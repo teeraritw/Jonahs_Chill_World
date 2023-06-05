@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1mdd1d6jk6iy"]
+
+[ext_resource type="PackedScene" uid="uid://ckwaorge4ual5" path="res://Player.tscn" id="1_dla6n"]
+[ext_resource type="Texture2D" uid="uid://b7rne4aapvl3a" path="res://Assets/Textures/GroundTexture.png" id="1_wnqsq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3v21"]
+albedo_texture = ExtResource("1_wnqsq")
+albedo_texture_force_srgb = true
+metallic_specular = 1.0
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_xlaot"]
+lightmap_size_hint = Vector2i(1004, 516)
+material = SubResource("StandardMaterial3D_b3v21")
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sk3it"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Game" type="Node3D"]
+
+[node name="Level" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xlaot")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_sk3it")
+
+[node name="Player" parent="." instance=ExtResource("1_dla6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.713764, 0.700386, 0, -0.700386, 0.713764, 0, 12.838, 15.151)
+light_energy = 0.847
+light_indirect_energy = 3.286

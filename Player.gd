@@ -1,10 +1,14 @@
 extends CharacterBody3D
  
-const MOVE_SPEED = 13
+const MOVE_SPEED = 16
 const MOUSE_SENS = 0.2
  
 @onready var anim_player = $AnimationPlayer
 @onready var raycast = $RayCast3D
+@onready var gun_audio = $GunAudio
+
+const weapon_list = ["Fist","Pistol","Shotgun"]
+var current_weapon = weapon_list[0]
  
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -34,8 +38,40 @@ func _physics_process(delta):
 	move_vec = move_vec.normalized()
 	move_vec = move_vec.rotated(Vector3(0, 1, 0), rotation.y)
 	move_and_collide(move_vec * MOVE_SPEED * delta)
-	if Input.is_action_pressed("shoot") and !anim_player.is_playing():
-		anim_player.play("shoot")
+	if (move_vec.x != 0 or move_vec.z != 0) and !$WalkAudio.playing:
+		$WalkAudio.play()
+	######################
+	### SWITCH WEAPONS ###
+	######################
+	if Input.is_action_just_pressed("fist") and current_weapon != weapon_list[0]:
+		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
+		current_weapon = weapon_list[0]
+		$CanvasLayer/Control/Fist.visible = true
+	elif Input.is_action_just_pressed("pistol") and current_weapon != weapon_list[1]:
+		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
+		current_weapon = weapon_list[1]
+		$CanvasLayer/Control/Pistol.visible = true
+	elif Input.is_action_just_pressed("shotgun") and current_weapon != weapon_list[2]:
+		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
+		current_weapon = weapon_list[2]
+		$CanvasLayer/Control/Shotgun.visible = true
+		
+	################
+	### ON SHOOT ###
+	################
+	if Input.is_action_just_pressed("shoot") and !anim_player.is_playing():
+		match current_weapon:
+			weapon_list[0]:
+				anim_player.play("punch")
+				$Burp.play()
+			weapon_list[1]:
+				gun_audio.pitch_scale = 0.2
+				gun_audio.play()
+				anim_player.play("shoot_pistol")
+			weapon_list[2]:
+				gun_audio.pitch_scale = 0.1
+				gun_audio.play()
+				anim_player.play("shoot_shotgun")
 		var coll = raycast.get_collider()
 		if raycast.is_colliding() and coll.has_method("kill"):
 			coll.kill()

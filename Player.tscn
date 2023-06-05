@@ -1,14 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=15 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_f6d76"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
 [ext_resource type="Texture2D" uid="uid://c4rofdyullvos" path="res://Assets/UI/crosshair.png" id="1_pdcmi"]
+[ext_resource type="Texture2D" uid="uid://cd0fuu8gj45pg" path="res://Assets/UI/Weapons/shotgun.png" id="3_d0k8a"]
+[ext_resource type="Texture2D" uid="uid://bxmavg3h1lul3" path="res://Assets/UI/Weapons/punch.png" id="4_t03ix"]
+[ext_resource type="AudioStream" uid="uid://ec12haohtfkl" path="res://Assets/SFX/pistol_shot.wav" id="4_vyb4d"]
+[ext_resource type="AudioStream" uid="uid://buje6dk5apb02" path="res://Assets/SFX/footsteps.wav" id="5_pp63u"]
+[ext_resource type="AudioStream" uid="uid://d1f4d7k26sgyo" path="res://Assets/SFX/burp.wav" id="8_6y3ip"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5wip"]
 
 [sub_resource type="Animation" id="Animation_u7ivh"]
 resource_name = "shoot"
-length = 0.7
+length = 0.5
 step = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -17,15 +22,89 @@ tracks/0/path = NodePath("CanvasLayer/Control/Pistol:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.6),
+"times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [1, 3, 1]
 }
 
+[sub_resource type="Animation" id="Animation_bx3sx"]
+resource_name = "shoot_shotgun"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Shotgun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 4, 0]
+}
+
+[sub_resource type="Animation" id="Animation_netnb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Shotgun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/Pistol:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/Fist:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tcdi4"]
+resource_name = "punch"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/Fist:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jhpv7"]
 _data = {
-"shoot": SubResource("Animation_u7ivh")
+"RESET": SubResource("Animation_netnb"),
+"punch": SubResource("Animation_tcdi4"),
+"shoot_pistol": SubResource("Animation_u7ivh"),
+"shoot_shotgun": SubResource("Animation_bx3sx")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -39,13 +118,13 @@ shape = SubResource("CapsuleShape3D_q5wip")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.508, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-fov = 90.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+fov = 80.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -2000)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-speed_scale = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_jhpv7")
 }
@@ -63,11 +142,24 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Pistol" type="Sprite2D" parent="CanvasLayer/Control"]
+visible = false
 position = Vector2(110, -416)
 scale = Vector2(13, 13)
 texture = ExtResource("1_hoyhv")
 hframes = 5
-frame = 1
+
+[node name="Shotgun" type="Sprite2D" parent="CanvasLayer/Control"]
+visible = false
+position = Vector2(110, -416)
+scale = Vector2(13, 13)
+texture = ExtResource("3_d0k8a")
+hframes = 5
+
+[node name="Fist" type="Sprite2D" parent="CanvasLayer/Control"]
+position = Vector2(48, -400)
+scale = Vector2(25, 25)
+texture = ExtResource("4_t03ix")
+hframes = 2
 
 [node name="crosshair" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8
@@ -78,3 +170,17 @@ anchor_bottom = 0.5
 offset_left = -16.0
 offset_top = -16.0
 texture = ExtResource("1_pdcmi")
+
+[node name="GunAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vyb4d")
+volume_db = -20.0
+pitch_scale = 0.2
+
+[node name="WalkAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pp63u")
+volume_db = -30.0
+pitch_scale = 0.35
+
+[node name="Burp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_6y3ip")
+volume_db = -20.0

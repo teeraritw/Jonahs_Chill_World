@@ -60,18 +60,19 @@ func _physics_process(delta):
 	### ON SHOOT ###
 	################
 	if Input.is_action_just_pressed("shoot") and !anim_player.is_playing():
+		gun_audio.volume_db = -20
 		match current_weapon:
 			weapon_list[0]:
+				gun_audio.pitch_scale = 0.7
+				gun_audio.volume_db = -30
 				anim_player.play("punch")
-				$Burp.play()
 			weapon_list[1]:
 				gun_audio.pitch_scale = 0.2
-				gun_audio.play()
 				anim_player.play("shoot_pistol")
 			weapon_list[2]:
 				gun_audio.pitch_scale = 0.1
-				gun_audio.play()
 				anim_player.play("shoot_shotgun")
+		gun_audio.play()
 		var coll = raycast.get_collider()
 		if raycast.is_colliding() and coll.has_method("kill"):
 			coll.kill()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1mdd1d6jk6iy"]
+[gd_scene load_steps=7 format=3 uid="uid://b1mdd1d6jk6iy"]
 
 [ext_resource type="PackedScene" uid="uid://ckwaorge4ual5" path="res://Player.tscn" id="1_dla6n"]
 [ext_resource type="Texture2D" uid="uid://b7rne4aapvl3a" path="res://Assets/Textures/GroundTexture.png" id="1_wnqsq"]
+[ext_resource type="PackedScene" uid="uid://d4mbx3omict3m" path="res://Slime.tscn" id="3_e3k2r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3v21"]
 albedo_texture = ExtResource("1_wnqsq")
@@ -36,3 +37,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 0.713764, 0.700386, 0, -0.700386, 0.713764, 0, 12.838, 15.151)
 light_energy = 0.847
 light_indirect_energy = 3.286
+
+[node name="Slime" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.6807, 1.69363, 5.34397)
+
+[node name="Slime2" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.4607, 1.69363, 8.22781)
+
+[node name="Slime3" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.6249, 1.69363, 1.56319)
+
+[node name="Slime4" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.058, 1.69363, 1.56319)
+
+[node name="Slime5" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.058, 1.69363, 12.5698)
+
+[node name="Slime6" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2698, 1.69363, 12.5698)
+
+[node name="Slime7" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.2698, 1.69363, -3.7755)
+
+[node name="Slime8" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.3202, 1.69363, -3.7755)
+
+[node name="Slime9" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5963, 1.69363, -0.849445)
+
+[node name="Slime10" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5963, 1.69363, 3.50827)
+
+[node name="Slime11" parent="." instance=ExtResource("3_e3k2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5963, 1.69363, 14.9693)

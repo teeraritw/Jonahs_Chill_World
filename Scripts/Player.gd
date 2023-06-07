@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends "res://Scripts/Entity.gd"
 
 const MOVE_SPEED = 16
 const MOUSE_SENS = 0.2
@@ -10,17 +10,20 @@ const MOUSE_SENS = 0.2
 const weapon_list = ["Fist","Pistol","Shotgun"]
 var current_weapon = weapon_list[0]
 var dmg = 0
+var can_be_damaged = true
  
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	await get_tree().create_timer(1).timeout
-	get_tree().call_group("monsters", "set_player", self)
+	
  
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
  
 func _physics_process(delta):
+	get_tree().call_group("monsters", "set_player", self)
+	if hp <= 0:
+		get_tree().reload_current_scene()
 	var move_vec = Vector3()
 	if Input.is_action_pressed("forward"):
 		move_vec.x -= 1
@@ -72,8 +75,9 @@ func _physics_process(delta):
 				anim_player.play("shoot_shotgun")
 		gun_audio.play()
 		var coll = raycast.get_collider()
-		if raycast.is_colliding() and coll.has_method("kill"):
-			coll.damage(dmg, true)
- 
-func kill():
-	get_tree().reload_current_scene()
+		if raycast.is_colliding() and coll.has_method("damage"):
+			coll.damage(dmg, true,false)
+
+
+func _on_hp_cooldown_timeout():
+	can_be_damaged = true

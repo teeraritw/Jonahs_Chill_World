@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=15 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8jrr1"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
@@ -106,6 +106,8 @@ _data = {
 "shoot_shotgun": SubResource("Animation_bx3sx")
 }
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_00jmg"]
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_8jrr1")
 
@@ -179,3 +181,14 @@ pitch_scale = 0.2
 stream = ExtResource("5_pp63u")
 volume_db = -30.0
 pitch_scale = 0.35
+
+[node name="Safezone" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Safezone"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("SphereShape3D_00jmg")
+
+[node name="HPCooldown" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="timeout" from="HPCooldown" to="." method="_on_hp_cooldown_timeout"]

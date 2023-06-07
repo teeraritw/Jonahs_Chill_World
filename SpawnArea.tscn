@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cux20y2d4jos3"]
+
+[ext_resource type="Script" path="res://SpawnArea.gd" id="1_f74bc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ilkh"]
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_f74bc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_5ilkh")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

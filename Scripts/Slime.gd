@@ -26,13 +26,9 @@ func _physics_process(delta):
 	move_and_collide(vec_to_player*move_speed*delta)
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
-		if coll != null and coll.name == "Player":
-			coll.kill()
-
-func kill():
-	dead = true
-	$CollisionShape3D.disabled = true
-	anim_play.play("death")
+		if coll != null and coll.name == "Player" and coll.can_be_damaged:
+			coll.damage(10,false)
+			print_debug(coll.hp)
 
 func set_player(p):
 	player = p

@@ -11,7 +11,9 @@ const weapon_list = ["Fist","Pistol","Shotgun"]
 var current_weapon = weapon_list[0]
 var dmg = 0
 var can_be_damaged = true
- 
+
+const MAX_HP = 100
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	

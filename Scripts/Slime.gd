@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if hp <= 0:
 		die($"CollisionShape3D",$"AnimationPlayer", "death")
 		dead = true
-		$Sprite3D.position.y=0.07
+		self.position.y=1.1
 	if !$Blood/BloodAnim.is_playing():
 			$Blood/BloodSplatter.visible = false
 	var vec_to_player = player.position - position
@@ -28,7 +28,6 @@ func _physics_process(delta):
 		var coll = raycast.get_collider()
 		if coll != null and coll.name == "Player" and coll.can_be_damaged:
 			coll.damage(10,false)
-			print_debug(coll.hp)
 
 func set_player(p):
 	player = p

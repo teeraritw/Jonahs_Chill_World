@@ -48,6 +48,8 @@ func _physics_process(delta):
 		ammo_amount.text = str(ammo_list[current_weapon])
 	if hp <= 0:
 		get_tree().reload_current_scene()
+	# update hp
+	$Portrait/HPAmount.text = str(hp)
 	var move_vec = Vector3()
 	if Input.is_action_pressed("forward"):
 		move_vec.x -= 1
@@ -95,7 +97,6 @@ func _physics_process(delta):
 				dmg = 100
 				gun_audio.pitch_scale = 0.2
 				anim_player.play("shoot_pistol")
-				print_debug(ammo_list.values()[1])
 			WEAPON_LIST[2]:
 				dmg = 200
 				gun_audio.pitch_scale = 0.1

@@ -237,7 +237,7 @@ position = Vector2(190, -152)
 scale = Vector2(3, 3)
 texture = ExtResource("9_3sdq5")
 
-[node name="Label" type="Label" parent="Portrait"]
+[node name="You" type="Label" parent="Portrait"]
 layout_mode = 0
 offset_left = 86.0
 offset_top = -91.0
@@ -247,5 +247,28 @@ theme_override_colors/font_color = Color(0, 0.113725, 1, 1)
 theme_override_fonts/font = ExtResource("10_c5qx0")
 theme_override_font_sizes/font_size = 100
 text = "YOU"
+
+[node name="HP" type="Label" parent="Portrait"]
+offset_top = -425.0
+offset_right = 214.0
+offset_bottom = -337.0
+theme_override_colors/font_color = Color(0.564706, 0.784314, 0.454902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("10_c5qx0")
+theme_override_font_sizes/font_size = 60
+text = "HP:"
+
+[node name="HPAmount" type="Label" parent="Portrait"]
+offset_left = 106.0
+offset_top = -425.0
+offset_right = 320.0
+offset_bottom = -337.0
+theme_override_colors/font_color = Color(0.564706, 0.784314, 0.454902, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("10_c5qx0")
+theme_override_font_sizes/font_size = 60
+text = "100"
 
 [connection signal="timeout" from="HPCooldown" to="." method="_on_hp_cooldown_timeout"]

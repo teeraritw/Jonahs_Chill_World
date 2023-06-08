@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=18 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8jrr1"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
@@ -8,6 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://ec12haohtfkl" path="res://Assets/SFX/pistol_shot.wav" id="4_vyb4d"]
 [ext_resource type="AudioStream" uid="uid://buje6dk5apb02" path="res://Assets/SFX/footsteps.wav" id="5_pp63u"]
 [ext_resource type="FontFile" uid="uid://cbtbixof3p2x2" path="res://Assets/Fonts/K26ToyBlocks123.ttf" id="6_2h5i1"]
+[ext_resource type="Texture2D" uid="uid://cyln6dg5xk636" path="res://Assets/UI/cat_meow.png" id="9_3sdq5"]
+[ext_resource type="FontFile" uid="uid://cr32a873w0ug5" path="res://Assets/Fonts/COMIC.TTF" id="10_c5qx0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5wip"]
 
@@ -220,5 +222,30 @@ shape = SubResource("SphereShape3D_00jmg")
 
 [node name="HPCooldown" type="Timer" parent="."]
 wait_time = 0.2
+
+[node name="Portrait" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="CatMeow" type="Sprite2D" parent="Portrait"]
+position = Vector2(190, -152)
+scale = Vector2(3, 3)
+texture = ExtResource("9_3sdq5")
+
+[node name="Label" type="Label" parent="Portrait"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = -91.0
+offset_right = 307.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0.113725, 1, 1)
+theme_override_fonts/font = ExtResource("10_c5qx0")
+theme_override_font_sizes/font_size = 100
+text = "YOU"
 
 [connection signal="timeout" from="HPCooldown" to="." method="_on_hp_cooldown_timeout"]

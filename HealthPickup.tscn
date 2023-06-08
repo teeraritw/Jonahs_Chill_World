@@ -12,6 +12,7 @@ script = ExtResource("1_i47si")
 shape = SubResource("BoxShape3D_ffwq1")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+top_level = true
 pixel_size = 0.03
 billboard = 2
 texture_filter = 0

@@ -4,7 +4,7 @@ const MOVE_SPEED = 16
 const MOUSE_SENS = 0.2
  
 const INIT_PISTOL_AMMO = 20
-const INIT_SHOTGUN_AMMO = 4
+const INIT_SHOTGUN_AMMO = 6
 var pistol_ammo = INIT_PISTOL_AMMO
 var shotgun_ammo = INIT_SHOTGUN_AMMO
 
@@ -34,6 +34,12 @@ func _input(event):
 func _physics_process(delta):
 	var current_ammo = int(ammo_amount.text)
 	get_tree().call_group("monsters", "set_player", self)
+	if current_ammo == 0:
+		ammo_amount.add_theme_color_override("font_color",Color(255,0,0))
+	elif current_ammo > 0 and current_ammo <= 4:
+		ammo_amount.add_theme_color_override("font_color", Color(255,255,0))
+	else:
+		ammo_amount.add_theme_color_override("font_color",Color(255,255,255))
 	# if current_weapon is fist
 	if current_weapon == WEAPON_LIST[0]:
 		ammo_amount.text = ""

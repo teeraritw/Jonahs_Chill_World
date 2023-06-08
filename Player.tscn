@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=17 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8jrr1"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bxmavg3h1lul3" path="res://Assets/UI/Weapons/punch.png" id="4_t03ix"]
 [ext_resource type="AudioStream" uid="uid://ec12haohtfkl" path="res://Assets/SFX/pistol_shot.wav" id="4_vyb4d"]
 [ext_resource type="AudioStream" uid="uid://buje6dk5apb02" path="res://Assets/SFX/footsteps.wav" id="5_pp63u"]
-[ext_resource type="FontFile" uid="uid://cbtbixof3p2x2" path="res://Assets/Fonts/K26ToyBlocks123.ttf" id="6_2h5i1"]
 [ext_resource type="Texture2D" uid="uid://cyln6dg5xk636" path="res://Assets/UI/cat_meow.png" id="9_3sdq5"]
 [ext_resource type="FontFile" uid="uid://cr32a873w0ug5" path="res://Assets/Fonts/COMIC.TTF" id="10_c5qx0"]
 
@@ -191,15 +190,16 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -144.0
-offset_top = 24.0
+offset_top = 11.0
 offset_right = 148.0
-offset_bottom = 91.0
+offset_bottom = 85.0
 grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.333333, 0.333333, 0.333333, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("6_2h5i1")
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("10_c5qx0")
 theme_override_font_sizes/font_size = 50
 text = "1000"
 horizontal_alignment = 1
@@ -239,9 +239,9 @@ texture = ExtResource("9_3sdq5")
 
 [node name="Label" type="Label" parent="Portrait"]
 layout_mode = 0
-offset_left = 89.0
+offset_left = 86.0
 offset_top = -91.0
-offset_right = 307.0
+offset_right = 304.0
 offset_bottom = 53.0
 theme_override_colors/font_color = Color(0, 0.113725, 1, 1)
 theme_override_fonts/font = ExtResource("10_c5qx0")

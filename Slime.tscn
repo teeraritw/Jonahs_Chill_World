@@ -138,6 +138,7 @@ _data = {
 script = ExtResource("1_ov1yt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.24166, 0, 0, 0, 1, 0, 0, 0, 1.84802, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_ihowk")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]

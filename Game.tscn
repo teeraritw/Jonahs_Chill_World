@@ -41,7 +41,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 0.713764, 0.700386, 0, -0.700386, 0.713764, 0, 12.838, 15.151)
 light_energy = 0.847
 light_indirect_energy = 3.286
-shadow_enabled = true
 
 [node name="HealthPickup" parent="." instance=ExtResource("4_yvc52")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.00017, 1.12006, -20.9672)

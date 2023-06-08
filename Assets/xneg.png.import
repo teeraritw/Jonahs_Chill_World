@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0ptbiapghfla"
-path.s3tc="res://.godot/imported/healthpack.png-6182081ade27d76a61de4b5f14fde614.s3tc.ctex"
+uid="uid://blrqnnt8703ip"
+path.s3tc="res://.godot/imported/xneg.png-c3215284e8763208dba3eb6ac438fc44.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Pickup/healthpack.png"
-dest_files=["res://.godot/imported/healthpack.png-6182081ade27d76a61de4b5f14fde614.s3tc.ctex"]
+source_file="res://Assets/xneg.png"
+dest_files=["res://.godot/imported/xneg.png-c3215284e8763208dba3eb6ac438fc44.s3tc.ctex"]
 
 [params]
 

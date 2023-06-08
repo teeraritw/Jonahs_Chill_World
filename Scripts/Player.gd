@@ -3,12 +3,20 @@ extends "res://Scripts/Entity.gd"
 const MOVE_SPEED = 16
 const MOUSE_SENS = 0.2
  
+const INIT_PISTOL_AMMO = 20
+const INIT_SHOTGUN_AMMO = 4
+var pistol_ammo = INIT_PISTOL_AMMO
+var shotgun_ammo = INIT_SHOTGUN_AMMO
+
 @onready var anim_player = $AnimationPlayer
 @onready var raycast = $RayCast3D
 @onready var gun_audio = $GunAudio
+@onready var ammo_amount = $CanvasLayer/Ammo/AmmoAmount
 
-const weapon_list = ["Fist","Pistol","Shotgun"]
-var current_weapon = weapon_list[0]
+var ammo_list = {"Fist": -1,"Pistol":pistol_ammo,"Shotgun":shotgun_ammo}
+
+const WEAPON_LIST = ["Fist","Pistol","Shotgun"]
+var current_weapon = WEAPON_LIST[0]
 var dmg = 0
 var can_be_damaged = true
 
@@ -21,9 +29,17 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
- 
+
+
 func _physics_process(delta):
+	var current_ammo = int(ammo_amount.text)
 	get_tree().call_group("monsters", "set_player", self)
+	# if current_weapon is fist
+	if current_weapon == WEAPON_LIST[0]:
+		ammo_amount.text = ""
+	# if not, update like normal
+	else:
+		ammo_amount.text = str(ammo_list[current_weapon])
 	if hp <= 0:
 		get_tree().reload_current_scene()
 	var move_vec = Vector3()
@@ -43,17 +59,17 @@ func _physics_process(delta):
 	######################
 	### SWITCH WEAPONS ###
 	######################
-	if Input.is_action_just_pressed("fist") and current_weapon != weapon_list[0]:
+	if Input.is_action_just_pressed("fist") and current_weapon != WEAPON_LIST[0]:
 		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
-		current_weapon = weapon_list[0]
+		current_weapon = WEAPON_LIST[0]
 		$CanvasLayer/Control/Fist.visible = true
-	elif Input.is_action_just_pressed("pistol") and current_weapon != weapon_list[1]:
+	elif Input.is_action_just_pressed("pistol") and current_weapon != WEAPON_LIST[1]:
 		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
-		current_weapon = weapon_list[1]
+		current_weapon = WEAPON_LIST[1]
 		$CanvasLayer/Control/Pistol.visible = true
-	elif Input.is_action_just_pressed("shotgun") and current_weapon != weapon_list[2]:
+	elif Input.is_action_just_pressed("shotgun") and current_weapon != WEAPON_LIST[2]:
 		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
-		current_weapon = weapon_list[2]
+		current_weapon = WEAPON_LIST[2]
 		$CanvasLayer/Control/Shotgun.visible = true
 		
 	################
@@ -61,20 +77,24 @@ func _physics_process(delta):
 	################
 	if Input.is_action_just_pressed("shoot") and !anim_player.is_playing():
 		gun_audio.volume_db = -20
+		if ammo_list[current_weapon] == 0:
+			return
 		match current_weapon:
-			weapon_list[0]:
+			WEAPON_LIST[0]:
 				dmg = 50
 				gun_audio.pitch_scale = 0.7
 				gun_audio.volume_db = -30
 				anim_player.play("punch")
-			weapon_list[1]:
+			WEAPON_LIST[1]:
 				dmg = 100
 				gun_audio.pitch_scale = 0.2
 				anim_player.play("shoot_pistol")
-			weapon_list[2]:
+				print_debug(ammo_list.values()[1])
+			WEAPON_LIST[2]:
 				dmg = 200
 				gun_audio.pitch_scale = 0.1
 				anim_player.play("shoot_shotgun")
+		ammo_list[current_weapon]-=1
 		gun_audio.play()
 		var coll = raycast.get_collider()
 		if raycast.is_colliding() and coll.has_method("damage"):

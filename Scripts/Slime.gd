@@ -16,7 +16,7 @@ func _physics_process(delta):
 	if hp <= 0:
 		die($"CollisionShape3D",$"AnimationPlayer", "death")
 		dead = true
-		self.position.y=1.1
+		self.position.y=1.5
 	if !$Blood/BloodAnim.is_playing():
 			$Blood/BloodSplatter.visible = false
 	var vec_to_player = player.position - position

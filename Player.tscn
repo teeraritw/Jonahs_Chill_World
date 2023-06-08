@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bxmavg3h1lul3" path="res://Assets/UI/Weapons/punch.png" id="4_t03ix"]
 [ext_resource type="AudioStream" uid="uid://ec12haohtfkl" path="res://Assets/SFX/pistol_shot.wav" id="4_vyb4d"]
 [ext_resource type="AudioStream" uid="uid://buje6dk5apb02" path="res://Assets/SFX/footsteps.wav" id="5_pp63u"]
-[ext_resource type="FontFile" uid="uid://c244fpo26s1b3" path="res://Assets/Fonts/braille_pixel_hc.otf" id="6_mxof0"]
+[ext_resource type="FontFile" uid="uid://cbtbixof3p2x2" path="res://Assets/Fonts/K26ToyBlocks123.ttf" id="6_2h5i1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5wip"]
 
@@ -185,22 +185,19 @@ grow_vertical = 2
 
 [node name="AmmoAmount" type="Label" parent="CanvasLayer/Ammo"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -56.0
-offset_top = 77.5
-offset_right = 56.0
-offset_bottom = 140.5
+offset_left = -144.0
+offset_top = 24.0
+offset_right = 148.0
+offset_bottom = 91.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0.333333, 0.333333, 0.333333, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("6_mxof0")
+theme_override_fonts/font = ExtResource("6_2h5i1")
 theme_override_font_sizes/font_size = 50
 text = "1000"
 horizontal_alignment = 1

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c244fpo26s1b3"
-path="res://.godot/imported/braille_pixel_hc.otf-ac27166cf377b359d556e8f49a0045b9.fontdata"
+uid="uid://cbtbixof3p2x2"
+path="res://.godot/imported/K26ToyBlocks123.ttf-1ac8ffb79239478ab21da2ac1d9e99d7.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/braille_pixel_hc.otf"
-dest_files=["res://.godot/imported/braille_pixel_hc.otf-ac27166cf377b359d556e8f49a0045b9.fontdata"]
+source_file="res://Assets/Fonts/K26ToyBlocks123.ttf"
+dest_files=["res://.godot/imported/K26ToyBlocks123.ttf-1ac8ffb79239478ab21da2ac1d9e99d7.fontdata"]
 
 [params]
 

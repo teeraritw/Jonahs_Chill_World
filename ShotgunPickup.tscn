@@ -1,16 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://4ctytcj5ayj2"]
+[gd_scene load_steps=4 format=3 uid="uid://4ctytcj5ayj2"]
 
+[ext_resource type="Script" path="res://ShotgunPickup.gd" id="1_k0xbu"]
 [ext_resource type="Texture2D" uid="uid://d00l728dqp8md" path="res://Assets/Pickup/shotgun.png" id="1_xk7an"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yb30v"]
 
 [node name="ShotgunPickup" type="Area3D"]
+script = ExtResource("1_k0xbu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_yb30v")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-pixel_size = 0.03
+pixel_size = 0.06
 billboard = 2
 texture_filter = 0
 texture = ExtResource("1_xk7an")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

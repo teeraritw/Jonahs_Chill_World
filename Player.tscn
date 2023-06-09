@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=20 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8jrr1"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
@@ -9,6 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://buje6dk5apb02" path="res://Assets/SFX/footsteps.wav" id="5_pp63u"]
 [ext_resource type="Texture2D" uid="uid://cyln6dg5xk636" path="res://Assets/UI/cat_meow.png" id="9_3sdq5"]
 [ext_resource type="FontFile" uid="uid://cr32a873w0ug5" path="res://Assets/Fonts/COMIC.TTF" id="10_c5qx0"]
+[ext_resource type="Texture2D" uid="uid://bx73vecwt4vq" path="res://Assets/UI/empty_bar.png" id="10_vruuq"]
+[ext_resource type="Texture2D" uid="uid://nk61n5lcpsoc" path="res://Assets/UI/red_bar.png" id="11_vc2sj"]
+[ext_resource type="AudioStream" uid="uid://cpkj13nso405n" path="res://Assets/SFX/ammo_pickup.wav" id="12_fnq1p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5wip"]
 
@@ -146,6 +149,7 @@ grow_vertical = 2
 
 [node name="Pistol" type="Sprite2D" parent="CanvasLayer/Control"]
 visible = false
+z_index = -10
 position = Vector2(111, -376)
 scale = Vector2(13, 13)
 texture = ExtResource("1_hoyhv")
@@ -153,12 +157,14 @@ hframes = 5
 
 [node name="Shotgun" type="Sprite2D" parent="CanvasLayer/Control"]
 visible = false
+z_index = -10
 position = Vector2(110, -377)
 scale = Vector2(13, 13)
 texture = ExtResource("3_d0k8a")
 hframes = 5
 
 [node name="Fist" type="Sprite2D" parent="CanvasLayer/Control"]
+z_index = -10
 position = Vector2(48, -375)
 scale = Vector2(25, 25)
 texture = ExtResource("4_t03ix")
@@ -176,31 +182,34 @@ texture = ExtResource("1_pdcmi")
 
 [node name="Ammo" type="Control" parent="CanvasLayer"]
 layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AmmoAmount" type="Label" parent="CanvasLayer/Ammo"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -182.0
+offset_right = 146.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="AmmoAmount" type="Label" parent="CanvasLayer/Ammo"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -144.0
-offset_top = 11.0
-offset_right = 148.0
-offset_bottom = 85.0
-grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.333333, 0.333333, 0.333333, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("10_c5qx0")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 70
 text = "1000"
 horizontal_alignment = 1
 
@@ -224,6 +233,7 @@ shape = SubResource("SphereShape3D_00jmg")
 wait_time = 0.2
 
 [node name="Portrait" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -248,27 +258,37 @@ theme_override_fonts/font = ExtResource("10_c5qx0")
 theme_override_font_sizes/font_size = 100
 text = "YOU"
 
-[node name="HP" type="Label" parent="Portrait"]
-offset_top = -425.0
-offset_right = 214.0
-offset_bottom = -337.0
-theme_override_colors/font_color = Color(0.564706, 0.784314, 0.454902, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("10_c5qx0")
-theme_override_font_sizes/font_size = 60
-text = "HP:"
+[node name="HPCanvas" type="CanvasLayer" parent="."]
 
-[node name="HPAmount" type="Label" parent="Portrait"]
-offset_left = 106.0
-offset_top = -425.0
-offset_right = 320.0
-offset_bottom = -337.0
-theme_override_colors/font_color = Color(0.564706, 0.784314, 0.454902, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("10_c5qx0")
-theme_override_font_sizes/font_size = 60
-text = "100"
+[node name="HP" type="Control" parent="HPCanvas"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HPCanvas/HP"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -309.0
+offset_top = -47.0
+offset_right = -103.0
+offset_bottom = -7.0
+grow_horizontal = 2
+scale = Vector2(3, 3)
+texture_over = ExtResource("10_vruuq")
+texture_progress = ExtResource("11_vc2sj")
+
+[node name="AmmoPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_fnq1p")
 
 [connection signal="timeout" from="HPCooldown" to="." method="_on_hp_cooldown_timeout"]

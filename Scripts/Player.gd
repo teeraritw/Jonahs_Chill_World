@@ -49,7 +49,7 @@ func _physics_process(delta):
 	if hp <= 0:
 		get_tree().reload_current_scene()
 	# update hp
-	$Portrait/HPAmount.text = str(hp)
+	$HPCanvas/HP/TextureProgressBar.value = hp
 	var move_vec = Vector3()
 	if Input.is_action_pressed("forward"):
 		move_vec.x -= 1

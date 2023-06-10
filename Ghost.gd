@@ -1,0 +1,42 @@
+extends "res://Scripts/Entity.gd"
+
+@onready var raycast = $RayCast3D
+@onready var anim_play = $AnimationPlayer
+
+var player = null
+var dead = false
+
+const HP = 750
+const MOVE_SPEED = 12
+const Y_LEVEL = 2.3
+
+func _ready():
+	anim_play.play("walk")
+	add_to_group("monsters")
+	set_hp(HP)
+	set_movespeed(MOVE_SPEED)
+	set_pickup_y(-0.9)
+	self.position.y = Y_LEVEL
+
+func _physics_process(delta):
+	if dead or player == null:
+		return
+	if hp <= 0:
+		die($"CollisionShape3D",$"AnimationPlayer", "death")
+		dead = true
+		self.position.y = 2.7
+	if !$Blood/BloodAnim.is_playing():
+			$Blood/BloodSplatter.visible = false
+	var vec_to_player = player.position - position
+	vec_to_player.y = 0
+	vec_to_player = vec_to_player.normalized()
+	raycast.target_position = vec_to_player * 1.5
+	
+	move_and_collide(vec_to_player*move_speed*delta)
+	if raycast.is_colliding():
+		var coll = raycast.get_collider()
+		if coll != null and coll.name == "Player" and coll.can_be_damaged:
+			coll.damage(30,false)
+
+func set_player(p):
+	player = p

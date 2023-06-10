@@ -89,16 +89,16 @@ func _physics_process(delta):
 			return
 		match current_weapon:
 			WEAPON_LIST[0]:
-				dmg = 50
+				dmg = 100
 				gun_audio.pitch_scale = 0.7
 				gun_audio.volume_db = -30
 				anim_player.play("punch")
 			WEAPON_LIST[1]:
-				dmg = 100
+				dmg = 200
 				gun_audio.pitch_scale = 0.2
 				anim_player.play("shoot_pistol")
 			WEAPON_LIST[2]:
-				dmg = 200
+				dmg = 500
 				gun_audio.pitch_scale = 0.1
 				anim_player.play("shoot_shotgun")
 		ammo_list[current_weapon]-=1

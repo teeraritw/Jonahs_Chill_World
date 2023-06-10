@@ -4,7 +4,9 @@ var health_pickup = load("res://HealthPickup.tscn")
 var shotgun_pickup = load("res://ShotgunPickup.tscn")
 var pistol_pickup = load("res://PistolPickup.tscn")
 
-var PICK_UPS = [health_pickup, shotgun_pickup, pistol_pickup, null]
+var PICK_UPS = [health_pickup, shotgun_pickup, pistol_pickup]
+
+var pickup_y = 0
 
 const INIT_MOVESPD = 5.0
 var move_speed = INIT_MOVESPD
@@ -14,6 +16,15 @@ enum types_of_mons {
 }
 
 var hp = 100
+
+func set_pickup_y(y_level):
+	pickup_y = y_level
+
+func set_hp(new_hp):
+	self.hp = new_hp
+
+func set_movespeed(new_speed):
+	move_speed = new_speed
 
 func damage(dmg, blood_splatter: bool, is_player=true):
 	self.hp -= dmg
@@ -31,10 +42,10 @@ func die(collision_shape: CollisionShape3D, anim_player: AnimationPlayer, anim_n
 	if can_drop == 0:
 		return
 	var pick_up = PICK_UPS[randi_range(0,PICK_UPS.size()-1)]
-	if pick_up == null:
-		return
-	else:
-		drop_pickup(pick_up)
+	drop_pickup(pick_up)
 
 func drop_pickup(pickup):
-	self.add_child(pickup.instantiate())
+	var dropped_pickup = pickup.instantiate()
+	dropped_pickup.top_level = true
+	dropped_pickup.position.y = pickup_y
+	self.add_child(dropped_pickup)

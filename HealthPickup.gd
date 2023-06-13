@@ -1,6 +1,6 @@
 extends Area3D
 
-const HEAL_AMOUNT = 20
+const HEAL_AMOUNT = 40
 
 
 # Called when the node enters the scene tree for the first time.

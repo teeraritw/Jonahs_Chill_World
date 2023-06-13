@@ -41,8 +41,15 @@ func die(collision_shape: CollisionShape3D, anim_player: AnimationPlayer, anim_n
 	var can_drop = randi_range(0,1)
 	if can_drop == 0:
 		return
-	var pick_up = PICK_UPS[randi_range(0,PICK_UPS.size()-1)]
-	drop_pickup(pick_up)
+	var pick_up = null
+	if randi_range(0,100) <= 30:
+		pick_up = shotgun_pickup
+	elif randi_range(0,100) <= 60:
+		pick_up = pistol_pickup
+	elif randi_range(0,100) <= 40:
+		pick_up = health_pickup
+	if pick_up != null:
+		drop_pickup(pick_up)
 
 func drop_pickup(pickup):
 	var dropped_pickup = pickup.instantiate()

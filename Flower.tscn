@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4mbx3omict3m"]
+[gd_scene load_steps=13 format=3 uid="uid://dconxqy34ci3n"]
 
-[ext_resource type="Texture2D" uid="uid://dq2celyydjrnn" path="res://Assets/Monsters/slime.png" id="1_lf0o8"]
-[ext_resource type="Script" path="res://Scripts/Slime.gd" id="1_ov1yt"]
-[ext_resource type="Texture2D" uid="uid://bdrgpibm1w14l" path="res://Assets/Monsters/bloodsplatter.png" id="3_6ovnl"]
+[ext_resource type="Script" path="res://Flower.gd" id="1_ad3gj"]
+[ext_resource type="Texture2D" uid="uid://bgwx3s7u71s2e" path="res://Assets/Monsters/man_eater_flower.png" id="2_vdfli"]
+[ext_resource type="Texture2D" uid="uid://bdrgpibm1w14l" path="res://Assets/Monsters/bloodsplatter.png" id="3_g61c7"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ihowk"]
-height = 3.11668
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sl6qi"]
 
 [sub_resource type="Animation" id="Animation_ia1fk"]
 length = 0.001
@@ -74,7 +73,7 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_5sg4a"]
+[sub_resource type="Animation" id="Animation_84xob"]
 resource_name = "hit"
 length = 0.2
 tracks/0/type = "value"
@@ -108,7 +107,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath("Sprite3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -123,7 +122,7 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_ia1fk"),
 "death": SubResource("Animation_4swo4"),
-"hit": SubResource("Animation_5sg4a"),
+"hit": SubResource("Animation_84xob"),
 "walk": SubResource("Animation_26o55")
 }
 
@@ -164,15 +163,16 @@ _data = {
 "blood_splatter": SubResource("Animation_moq48")
 }
 
-[node name="Slime" type="CharacterBody3D"]
-script = ExtResource("1_ov1yt")
+[node name="Flower" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_ad3gj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2.24166, 0, 0, 0, 2.31573, 0, 0, 0, 1.84802, 0, 2.20807, 0)
-shape = SubResource("CapsuleShape3D_ihowk")
+transform = Transform3D(3.19856, 0, 0, 0, 3.78464, 0, 0, 0, 3.48541, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_sl6qi")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.421191, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.609655, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -182,10 +182,11 @@ libraries = {
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
 layers = 2
-pixel_size = 0.15
+pixel_size = 0.1
 billboard = 2
+alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("1_lf0o8")
+texture = ExtResource("2_vdfli")
 hframes = 3
 vframes = 6
 frame = 9
@@ -194,12 +195,12 @@ frame = 9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.239716, 0)
 
 [node name="BloodSplatter" type="Sprite3D" parent="Blood"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.297544, 0)
 visible = false
 pixel_size = 0.1
 billboard = 2
+alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("3_6ovnl")
+texture = ExtResource("3_g61c7")
 hframes = 15
 
 [node name="BloodAnim" type="AnimationPlayer" parent="Blood"]

@@ -30,7 +30,7 @@ func _process(delta):
 		
 		var to_spawn = null
 		### SETTING TYPES ###
-		if randi_range(0,100) <= 60:
+		if randi_range(0,100) <= 80:
 			to_spawn = available_to_spawn[0]
 		elif randi_range(0,100) <= 30:
 			to_spawn = available_to_spawn[1]

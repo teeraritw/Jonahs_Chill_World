@@ -18,7 +18,6 @@ var ammo_list = {"Fist": -1,"Pistol":pistol_ammo,"Shotgun":shotgun_ammo}
 const WEAPON_LIST = ["Fist","Pistol","Shotgun"]
 var current_weapon = WEAPON_LIST[0]
 var dmg = 0
-var can_be_damaged = true
 
 const MAX_HP = 100
 
@@ -106,7 +105,3 @@ func _physics_process(delta):
 		var coll = raycast.get_collider()
 		if raycast.is_colliding() and coll.has_method("damage"):
 			coll.damage(dmg, true,false)
-
-
-func _on_hp_cooldown_timeout():
-	can_be_damaged = true

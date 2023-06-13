@@ -26,7 +26,7 @@ func _physics_process(delta):
 	move_and_collide(vec_to_player*move_speed*delta)
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
-		if coll != null and coll.name == "Player" and coll.can_be_damaged:
+		if coll != null and coll.name == "Player":
 			coll.damage(10,false)
 
 func set_player(p):

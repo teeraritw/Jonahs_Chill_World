@@ -230,7 +230,8 @@ transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 shape = SubResource("SphereShape3D_00jmg")
 
 [node name="HPCooldown" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.4
+one_shot = true
 
 [node name="Portrait" type="Control" parent="."]
 visible = false
@@ -290,5 +291,3 @@ texture_progress = ExtResource("11_vc2sj")
 
 [node name="AmmoPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_fnq1p")
-
-[connection signal="timeout" from="HPCooldown" to="." method="_on_hp_cooldown_timeout"]

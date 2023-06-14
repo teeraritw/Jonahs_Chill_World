@@ -3,11 +3,13 @@ extends Area3D
 var spawn_positions = []
 var spawn_types = []
 var amount_to_spawn = 2
-var pos_query = PhysicsPointQueryParameters3D.new()
 
 @onready var slime = load("res://Slime.tscn")
 @onready var ghost = load("res://Ghost.tscn")
 @onready var flower = load("res://Flower.tscn")
+
+@onready var player = get_node("../Player")
+const SAFE_DISTANCE = 5
 
 @onready var available_to_spawn = [slime,ghost,flower]
 
@@ -20,17 +22,15 @@ func _process(delta):
 	for n in amount_to_spawn:
 		### SETTING POSITIONS ###
 		var spawn_pos = Vector3(randf_range(-area_extent_x,area_extent_x),1.7,randf_range(-area_extent_z,area_extent_z))
-		# check if position overlaps with the player's "safezone"
-		pos_query.position = spawn_pos
-		while pos_query.collide_with_areas:
+		# check if position is within the player's "safe" distance
+		while abs(spawn_pos.x - player.position.x) < SAFE_DISTANCE or abs(spawn_pos.z - player.position.z) < SAFE_DISTANCE:
 			spawn_pos = Vector3(randf_range(-area_extent_x,area_extent_x),1.7,randf_range(-area_extent_z,area_extent_z))
-			pos_query.position = spawn_pos
 		# add a spawn position within Area3D
 		spawn_positions.insert(n,spawn_pos)
 		
 		var to_spawn = null
 		### SETTING TYPES ###
-		if randi_range(0,100) <= 80:
+		if randi_range(0,100) <= 70:
 			to_spawn = available_to_spawn[0]
 		elif randi_range(0,100) <= 30:
 			to_spawn = available_to_spawn[1]

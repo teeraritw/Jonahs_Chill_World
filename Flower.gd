@@ -6,7 +6,7 @@ extends "res://Scripts/Entity.gd"
 var player = null
 var dead = false
 
-const HP = 1500
+const HP = 2500
 const MOVE_SPEED = 5
 const Y_LEVEL = 3.8
 

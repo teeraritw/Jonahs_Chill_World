@@ -11,7 +11,7 @@ var dead = false
 func _ready():
 	anim_play.play("walk")
 	add_to_group("monsters")
-	self.position.y += 0.5
+	self.position.y += 0.4
 
 func _physics_process(delta):
 	if dead or player == null:

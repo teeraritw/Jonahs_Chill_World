@@ -8,7 +8,6 @@ var dead = false
 
 const HP = 750
 const MOVE_SPEED = 10
-const DAMAGE = 30
 const Y_LEVEL = 2.3
 
 func _ready():
@@ -25,7 +24,7 @@ func _physics_process(delta):
 	if hp <= 0:
 		die($"CollisionShape3D",$"AnimationPlayer", "death")
 		dead = true
-		self.position.y = 2.5
+		self.position.y = 2.7
 		$Blood/BloodSplatter.visible = false
 	if !$Blood/BloodAnim.is_playing():
 			$Blood/BloodSplatter.visible = false
@@ -39,7 +38,7 @@ func _physics_process(delta):
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
 		if coll != null and coll.name == "Player":
-			coll.damage(DAMAGE,false)
+			coll.damage(30,false)
 
 func set_player(p):
 	player = p

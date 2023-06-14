@@ -8,8 +8,7 @@ var dead = false
 
 const HP = 2500
 const MOVE_SPEED = 5
-const DAMAGE = 60
-const Y_LEVEL = 3.6
+const Y_LEVEL = 3.8
 
 func _ready():
 	anim_play.play("walk")
@@ -39,7 +38,7 @@ func _physics_process(delta):
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
 		if coll != null and coll.name == "Player":
-			coll.damage(DAMAGE,false)
+			coll.damage(60,false)
 
 func set_player(p):
 	player = p

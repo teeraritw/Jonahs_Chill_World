@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-var health_pickup = load("res://HealthPickup.tscn")
-var shotgun_pickup = load("res://ShotgunPickup.tscn")
-var pistol_pickup = load("res://PistolPickup.tscn")
+var health_pickup = load("res://Pickups/HealthPickup.tscn")
+var shotgun_pickup = load("res://Pickups/ShotgunPickup.tscn")
+var pistol_pickup = load("res://Pickups/PistolPickup.tscn")
 
 var PICK_UPS = [health_pickup, shotgun_pickup, pistol_pickup]
 

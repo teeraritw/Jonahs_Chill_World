@@ -1,0 +1,211 @@
+[gd_scene load_steps=13 format=3 uid="uid://dconxqy34ci3n"]
+
+[ext_resource type="Script" path="res://Enemies/Flower.gd" id="1_fylx6"]
+[ext_resource type="Texture2D" uid="uid://bgwx3s7u71s2e" path="res://Assets/Monsters/man_eater_flower.png" id="2_6mh7g"]
+[ext_resource type="Texture2D" uid="uid://bdrgpibm1w14l" path="res://Assets/Monsters/bloodsplatter.png" id="3_msoj6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sl6qi"]
+
+[sub_resource type="Animation" id="Animation_ia1fk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.07, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4swo4"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_84xob"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_26o55"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector3(0, 0.07, 0), Vector3(0, 0.446201, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsesi"]
+_data = {
+"RESET": SubResource("Animation_ia1fk"),
+"death": SubResource("Animation_4swo4"),
+"hit": SubResource("Animation_84xob"),
+"walk": SubResource("Animation_26o55")
+}
+
+[sub_resource type="Animation" id="Animation_qbt1o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blood/BloodSplatter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_moq48"]
+resource_name = "blood_splatter"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blood/BloodSplatter:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 5, 6, 8, 9, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ac3mp"]
+_data = {
+"RESET": SubResource("Animation_qbt1o"),
+"blood_splatter": SubResource("Animation_moq48")
+}
+
+[node name="Flower" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_fylx6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.19856, 0, 0, 0, 3.78464, 0, 0, 0, 3.48541, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_sl6qi")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.609655, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rsesi")
+}
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 0)
+layers = 2
+pixel_size = 0.1
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("2_6mh7g")
+hframes = 3
+vframes = 6
+frame = 9
+
+[node name="Blood" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.239716, 0)
+
+[node name="BloodSplatter" type="Sprite3D" parent="Blood"]
+visible = false
+pixel_size = 0.1
+billboard = 2
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("3_msoj6")
+hframes = 15
+
+[node name="BloodAnim" type="AnimationPlayer" parent="Blood"]
+root_node = NodePath("../..")
+speed_scale = 2.5
+libraries = {
+"": SubResource("AnimationLibrary_ac3mp")
+}

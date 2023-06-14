@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bylff380qo440"]
+
+[ext_resource type="Script" path="res://Pickups/HealthPickup.gd" id="1_vfd85"]
+[ext_resource type="Texture2D" uid="uid://c3u87pty2m2sx" path="res://Assets/Pickup/pepsi.png" id="2_qmb4f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffwq1"]
+
+[node name="HealthPickup" type="Area3D"]
+script = ExtResource("1_vfd85")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ffwq1")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+top_level = true
+pixel_size = 0.03
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_qmb4f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://be5avdsk8soi3"]
+[gd_scene load_steps=13 format=3 uid="uid://8x67x06vg060"]
 
-[ext_resource type="Script" path="res://Enemies/Pumpking.gd" id="1_gv2ui"]
-[ext_resource type="Texture2D" uid="uid://clcutj3lhrp4x" path="res://Assets/Monsters/pumpking.png" id="2_6s7ta"]
-[ext_resource type="Texture2D" uid="uid://bdrgpibm1w14l" path="res://Assets/Monsters/bloodsplatter.png" id="3_f5o17"]
+[ext_resource type="Script" path="res://Enemies/Bee.gd" id="1_17sha"]
+[ext_resource type="Texture2D" uid="uid://c54ovl2ci8nmr" path="res://Assets/Monsters/bee.png" id="2_f74xq"]
+[ext_resource type="Texture2D" uid="uid://bdrgpibm1w14l" path="res://Assets/Monsters/bloodsplatter.png" id="3_gj2ni"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sl6qi"]
 
@@ -163,10 +163,10 @@ _data = {
 "blood_splatter": SubResource("Animation_moq48")
 }
 
-[node name="Pumpking" type="CharacterBody3D"]
+[node name="Bee" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 2
-script = ExtResource("1_gv2ui")
+script = ExtResource("1_17sha")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(3.19856, 0, 0, 0, 3.78464, 0, 0, 0, 3.48541, 0, 0, 0)
@@ -187,7 +187,7 @@ pixel_size = 0.1
 billboard = 2
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("2_6s7ta")
+texture = ExtResource("2_f74xq")
 hframes = 3
 vframes = 6
 frame = 9
@@ -201,7 +201,7 @@ pixel_size = 0.1
 billboard = 2
 alpha_cut = 2
 texture_filter = 0
-texture = ExtResource("3_f5o17")
+texture = ExtResource("3_gj2ni")
 hframes = 15
 
 [node name="BloodAnim" type="AnimationPlayer" parent="Blood"]

@@ -8,11 +8,12 @@ var amount_to_spawn = 2
 @onready var ghost = load("res://Enemies/Ghost.tscn")
 @onready var flower = load("res://Enemies/Flower.tscn")
 @onready var pumpking = load("res://Enemies/Pumpking.tscn")
+@onready var bee = load("res://Enemies/Bee.tscn")
 
 @onready var player = get_node("../Player")
 const SAFE_DISTANCE = 5
 
-@onready var available_to_spawn = [slime,ghost,pumpking,flower]
+@onready var available_to_spawn = [slime,bee,ghost,pumpking,flower]
 
 @onready var area_extent_x = self.scale.x/2
 @onready var area_extent_z = self.scale.z/2
@@ -31,16 +32,18 @@ func _process(delta):
 		
 		var to_spawn = null
 		### SETTING TYPES ###
-		if randi_range(0,100) <= 65:
+		if randi_range(0,100) <= 50:
 			to_spawn = slime
-		elif randi_range(0,100) <= 40:
+		elif randi_range(0,100) <= 45:
+			to_spawn = bee
+		elif randi_range(0,100) <= 30:
 			to_spawn = ghost
 		elif randi_range(0,100) <= 30:
 			to_spawn = pumpking
 		elif randi_range(0,100) <= 10:
 			to_spawn = flower
 		else:
-			to_spawn = available_to_spawn[randi_range(0,available_to_spawn.size()-1)]
+			to_spawn = available_to_spawn[randi_range(0,1)]
 		spawn_types.insert(n,to_spawn)
 
 func _on_timer_timeout():

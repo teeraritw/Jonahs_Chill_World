@@ -165,6 +165,7 @@ _data = {
 
 [node name="Flower" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 2
 script = ExtResource("1_fylx6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

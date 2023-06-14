@@ -165,6 +165,7 @@ _data = {
 }
 
 [node name="Slime" type="CharacterBody3D"]
+collision_layer = 2
 script = ExtResource("1_plidk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

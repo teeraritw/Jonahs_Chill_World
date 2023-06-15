@@ -1,6 +1,6 @@
 extends "res://Scripts/Entity.gd"
 
-const MOVE_SPEED = 16
+const MOVE_SPEED = 20
 const MOUSE_SENS = 0.2
  
 const INIT_PISTOL_AMMO = 20

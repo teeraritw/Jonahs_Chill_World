@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=25 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8jrr1"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bx73vecwt4vq" path="res://Assets/UI/empty_bar.png" id="10_vruuq"]
 [ext_resource type="Texture2D" uid="uid://nk61n5lcpsoc" path="res://Assets/UI/red_bar.png" id="11_vc2sj"]
 [ext_resource type="AudioStream" uid="uid://cpkj13nso405n" path="res://Assets/SFX/ammo_pickup.wav" id="12_fnq1p"]
+[ext_resource type="AudioStream" uid="uid://butx7n8077b7d" path="res://Assets/SFX/gulping.wav" id="13_ssbou"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5wip"]
 
@@ -109,6 +110,49 @@ _data = {
 "punch": SubResource("Animation_tcdi4"),
 "shoot_pistol": SubResource("Animation_u7ivh"),
 "shoot_shotgun": SubResource("Animation_bx3sx")
+}
+
+[sub_resource type="Gradient" id="Gradient_g15kk"]
+colors = PackedColorArray(0, 1, 0, 1, 0.70301, 0.688001, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6ehq1"]
+gradient = SubResource("Gradient_g15kk")
+
+[sub_resource type="Animation" id="Animation_7a07d"]
+resource_name = "healed"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Healed:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 1, 0, 0.576471), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pbvmj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Healed:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xjs4w"]
+_data = {
+"RESET": SubResource("Animation_pbvmj"),
+"healed": SubResource("Animation_7a07d")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -261,10 +305,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -144.0
-offset_top = -77.0
-offset_right = -5.0
-offset_bottom = -3.0
+offset_left = -155.0
+offset_top = -89.0
+offset_right = -16.0
+offset_bottom = -15.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 0.486275)
@@ -307,3 +351,20 @@ texture_progress = ExtResource("11_vc2sj")
 
 [node name="AmmoPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_fnq1p")
+
+[node name="PickupEffects" type="CanvasLayer" parent="."]
+
+[node name="Healed" type="Sprite2D" parent="PickupEffects"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(566.5, 337.75)
+scale = Vector2(1179, 676.5)
+texture = SubResource("GradientTexture2D_6ehq1")
+
+[node name="PickupAnim" type="AnimationPlayer" parent="PickupEffects"]
+libraries = {
+"": SubResource("AnimationLibrary_xjs4w")
+}
+
+[node name="HealthPickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ssbou")
+volume_db = -15.0

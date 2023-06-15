@@ -9,6 +9,7 @@ var amount_to_spawn = 2
 @onready var flower = load("res://Enemies/Flower.tscn")
 @onready var pumpking = load("res://Enemies/Pumpking.tscn")
 @onready var bee = load("res://Enemies/Bee.tscn")
+@onready var bat = load("res://Enemies/Bat.tscn")
 
 @onready var player = get_node("../Player")
 const SAFE_DISTANCE = 5
@@ -32,10 +33,12 @@ func _process(delta):
 		
 		var to_spawn = null
 		### SETTING TYPES ###
-		if randi_range(0,100) <= 50:
+		if randi_range(0,100) <= 35:
 			to_spawn = slime
-		elif randi_range(0,100) <= 45:
+		elif randi_range(0,100) <= 35:
 			to_spawn = bee
+		elif randi_range(0,100) <= 35:
+			to_spawn = bat
 		elif randi_range(0,100) <= 30:
 			to_spawn = ghost
 		elif randi_range(0,100) <= 30:

@@ -6,9 +6,9 @@ extends "res://Scripts/Entity.gd"
 var player = null
 var dead = false
 
-const HP = 200
-const MOVE_SPEED = 8
-const DAMAGE = 15
+const HP = 500
+const MOVE_SPEED = 10
+const DAMAGE = 25
 const Y_LEVEL = 2.6
 
 func _ready():

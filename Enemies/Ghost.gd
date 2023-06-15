@@ -24,7 +24,7 @@ func _physics_process(delta):
 	if hp <= 0:
 		die($"CollisionShape3D",$"AnimationPlayer", "death")
 		dead = true
-		self.position.y = 2.7
+		self.position.y = 2.4
 		$Blood/BloodSplatter.visible = false
 	if !$Blood/BloodAnim.is_playing():
 			$Blood/BloodSplatter.visible = false

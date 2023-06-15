@@ -11,10 +11,6 @@ var pickup_y = 0
 const INIT_MOVESPD = 5.0
 var move_speed = INIT_MOVESPD
 
-enum types_of_mons {
-	SLIME
-}
-
 var hp = 100
 
 func set_pickup_y(y_level):

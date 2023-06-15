@@ -10,7 +10,7 @@ var dead = false
 
 func _ready():
 	anim_play.play("walk")
-	set_pickup_y(0.6)
+	set_pickup_y(0.2)
 	add_to_group("monsters")
 	self.position.y += 0.4
 

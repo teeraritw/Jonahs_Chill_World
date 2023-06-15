@@ -29,6 +29,14 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
 
+func _process(delta):
+	var current_time = Time.get_ticks_msec()/1000
+	var current_min = current_time/60
+	var current_sec = current_time%60
+	if current_sec < 10:
+		$Timer/Time.text = str(current_min) + ":0" + str(current_sec)
+	else:
+		$Timer/Time.text = str(current_min) + ":" + str(current_sec)
 
 func _physics_process(delta):
 	var current_ammo = int(ammo_amount.text)

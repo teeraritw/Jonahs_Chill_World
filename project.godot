@@ -69,6 +69,7 @@ pistol={
 
 3d_render/layer_1="Player"
 3d_render/layer_2="Enemies"
+3d_render/layer_3="Wall"
 
 [physics]
 

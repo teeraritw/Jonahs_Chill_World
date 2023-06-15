@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ckwaorge4ual5" path="res://Player.tscn" id="1_dla6n"]
 [ext_resource type="PackedScene" uid="uid://cux20y2d4jos3" path="res://SpawnArea.tscn" id="1_emuig"]
 [ext_resource type="Texture2D" uid="uid://b7rne4aapvl3a" path="res://Assets/Textures/GroundTexture.png" id="1_wnqsq"]
-[ext_resource type="PackedScene" uid="uid://bylff380qo440" path="res://Pickups/HealthPickup.tscn" id="4_yvc52"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dlpip"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3v21"]
 albedo_texture = ExtResource("1_wnqsq")
@@ -26,6 +27,39 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [node name="Area3D" parent="." instance=ExtResource("1_emuig")]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall" type="StaticBody3D" parent="Walls"]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 10, 0, 0, 55)
+shape = SubResource("BoxShape3D_dlpip")
+
+[node name="Wall3" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 10, 0, 0, 55)
+shape = SubResource("BoxShape3D_dlpip")
+
+[node name="Wall4" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall4"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 10, 0, 0, 55)
+shape = SubResource("BoxShape3D_dlpip")
+
+[node name="Wall2" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -110)
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2"]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 10, 0, 0, 55)
+shape = SubResource("BoxShape3D_dlpip")
+
 [node name="Level" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_xlaot")
 
@@ -36,11 +70,9 @@ shape = SubResource("ConcavePolygonShape3D_sk3it")
 
 [node name="Player" parent="." instance=ExtResource("1_dla6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 6
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.713764, 0.700386, 0, -0.700386, 0.713764, 0, 12.838, 15.151)
 light_energy = 0.847
 light_indirect_energy = 3.286
-
-[node name="HealthPickup" parent="." instance=ExtResource("4_yvc52")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.00017, 1.12006, -20.9672)

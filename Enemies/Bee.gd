@@ -16,7 +16,7 @@ func _ready():
 	add_to_group("monsters")
 	set_hp(HP)
 	set_movespeed(MOVE_SPEED)
-	set_pickup_y(-2.5)
+	set_pickup_y(-1.2)
 	self.position.y = Y_LEVEL
 
 func _physics_process(delta):

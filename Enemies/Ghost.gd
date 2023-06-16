@@ -38,7 +38,8 @@ func _physics_process(delta):
 	if raycast.is_colliding():
 		var coll = raycast.get_collider()
 		if coll != null and coll.name == "Player":
-			coll.damage(30,false)
+			coll.damage(60,false)
 
 func set_player(p):
 	player = p
+

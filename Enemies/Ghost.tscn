@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dhtfyyup2g2ro" path="res://Assets/Monsters/ghost.png" id="2_2khhk"]
 [ext_resource type="Texture2D" uid="uid://bdrgpibm1w14l" path="res://Assets/Monsters/bloodsplatter.png" id="3_x4cvb"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sl6qi"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_x5n26"]
 
 [sub_resource type="Animation" id="Animation_ia1fk"]
 length = 0.001
@@ -170,8 +170,8 @@ collision_mask = 5
 script = ExtResource("1_hh5oi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(3.19856, 0, 0, 0, 3.78464, 0, 0, 0, 3.48541, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_sl6qi")
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("CylinderShape3D_x5n26")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.609655, 0)

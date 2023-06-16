@@ -170,7 +170,7 @@ collision_mask = 5
 script = ExtResource("1_fylx6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(3.19856, 0, 0, 0, 3.78464, 0, 0, 0, 3.48541, 0, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_sl6qi")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]

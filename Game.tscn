@@ -89,5 +89,5 @@ environment = SubResource("Environment_iukpw")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_jjv3f")
 volume_db = -25.0
-pitch_scale = 0.4
+pitch_scale = 0.6
 autoplay = true

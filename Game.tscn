@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1mdd1d6jk6iy"]
+[gd_scene load_steps=9 format=3 uid="uid://b1mdd1d6jk6iy"]
 
 [ext_resource type="PackedScene" uid="uid://ckwaorge4ual5" path="res://Player.tscn" id="1_dla6n"]
 [ext_resource type="PackedScene" uid="uid://cux20y2d4jos3" path="res://SpawnArea.tscn" id="1_emuig"]
-[ext_resource type="Texture2D" uid="uid://b7rne4aapvl3a" path="res://Assets/Textures/GroundTexture.png" id="1_wnqsq"]
+[ext_resource type="Texture2D" uid="uid://cco4lg2xtm1xt" path="res://Assets/Textures/Grass.png" id="2_1bwgy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dlpip"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3v21"]
-albedo_texture = ExtResource("1_wnqsq")
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("2_1bwgy")
 albedo_texture_force_srgb = true
 metallic_specular = 1.0
 uv1_scale = Vector3(0.2, 0.2, 0.2)
@@ -17,19 +18,28 @@ texture_filter = 0
 [sub_resource type="BoxMesh" id="BoxMesh_xlaot"]
 lightmap_size_hint = Vector2i(1004, 516)
 material = SubResource("StandardMaterial3D_b3v21")
-size = Vector3(100, 1, 100)
+size = Vector3(200, 1, 200)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sk3it"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
+[sub_resource type="Environment" id="Environment_iukpw"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+fog_enabled = true
+fog_light_color = Color(1, 0, 0, 1)
+fog_light_energy = 0.1
+fog_density = 0.07
+
 [node name="Game" type="Node3D"]
 
 [node name="Area3D" parent="." instance=ExtResource("1_emuig")]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 
 [node name="Walls" type="Node" parent="."]
 
 [node name="Wall" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall"]
@@ -37,7 +47,7 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 10, 0, 0, 55)
 shape = SubResource("BoxShape3D_dlpip")
 
 [node name="Wall3" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 1, 0, -2, 0, -4.37114e-08, 50, 0, 0)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3"]
@@ -45,7 +55,7 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 10, 0, 0, 55)
 shape = SubResource("BoxShape3D_dlpip")
 
 [node name="Wall4" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, 0, 0)
+transform = Transform3D(-8.74228e-08, 0, -1, 0, 1, 0, 2, 0, -4.37114e-08, -50, 0, 0)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall4"]
@@ -53,7 +63,7 @@ transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 10, 0, 0, 55)
 shape = SubResource("BoxShape3D_dlpip")
 
 [node name="Wall2" type="StaticBody3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -110)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -160)
 collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2"]
@@ -72,7 +82,5 @@ shape = SubResource("ConcavePolygonShape3D_sk3it")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 6
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.713764, 0.700386, 0, -0.700386, 0.713764, 0, 12.838, 15.151)
-light_energy = 0.847
-light_indirect_energy = 3.286
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iukpw")

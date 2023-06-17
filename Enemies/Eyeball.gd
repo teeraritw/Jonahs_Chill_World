@@ -7,7 +7,7 @@ var player = null
 var dead = false
 
 const HP = 1000
-const MOVE_SPEED = 10
+const MOVE_SPEED = 12
 const DAMAGE = 35
 const Y_LEVEL = 2.6
 

@@ -7,7 +7,7 @@ var player = null
 var dead = false
 
 const HP = 1550
-const MOVE_SPEED = 10
+const MOVE_SPEED = 15
 const Y_LEVEL = 2.3
 
 func _ready():

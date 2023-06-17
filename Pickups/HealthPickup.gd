@@ -10,7 +10,7 @@ func _ready():
 func _on_body_entered(body):
 	if body.name == "Player" and body.hp < body.MAX_HP:
 		body.get_node("HealthPickup").play()
-		body.get_node("PickupEffects/PickupAnim").play("healed")
+		body.get_node("Effects/EffectAnim").play("healed")
 		if body.hp+HEAL_AMOUNT>body.MAX_HP:
 			body.hp = body.MAX_HP
 		else:

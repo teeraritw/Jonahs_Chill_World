@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1mdd1d6jk6iy"]
+[gd_scene load_steps=10 format=3 uid="uid://b1mdd1d6jk6iy"]
 
 [ext_resource type="PackedScene" uid="uid://ckwaorge4ual5" path="res://Player.tscn" id="1_dla6n"]
 [ext_resource type="PackedScene" uid="uid://cux20y2d4jos3" path="res://SpawnArea.tscn" id="1_emuig"]
 [ext_resource type="Texture2D" uid="uid://cco4lg2xtm1xt" path="res://Assets/Textures/Grass.png" id="2_1bwgy"]
+[ext_resource type="AudioStream" uid="uid://qm8bjy7ehs6g" path="res://Assets/Music/main_bgm.wav" id="4_jjv3f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dlpip"]
 
@@ -84,3 +85,9 @@ collision_mask = 6
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iukpw")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jjv3f")
+volume_db = -25.0
+pitch_scale = 0.4
+autoplay = true

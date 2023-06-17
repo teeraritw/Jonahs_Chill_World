@@ -6,8 +6,8 @@ extends "res://Scripts/Entity.gd"
 var player = null
 var dead = false
 
-const HP = 500
-const MOVE_SPEED = 11
+const HP = 300
+const MOVE_SPEED = 12
 const DAMAGE = 25
 const Y_LEVEL = 2.6
 
@@ -16,7 +16,7 @@ func _ready():
 	add_to_group("monsters")
 	set_hp(HP)
 	set_movespeed(MOVE_SPEED)
-	set_pickup_y(-2.5)
+	set_pickup_y(-0.9)
 	self.position.y = Y_LEVEL
 
 func _physics_process(delta):

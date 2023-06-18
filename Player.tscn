@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=33 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8jrr1"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
@@ -118,11 +118,11 @@ colors = PackedColorArray(0, 1, 0, 1, 0.70301, 0.688001, 0, 1)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_6ehq1"]
 gradient = SubResource("Gradient_g15kk")
 
-[sub_resource type="Gradient" id="Gradient_tt33p"]
+[sub_resource type="Gradient" id="Gradient_44aph"]
 colors = PackedColorArray(0.647059, 0, 0, 1, 0.647059, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2e6k0"]
-gradient = SubResource("Gradient_tt33p")
+gradient = SubResource("Gradient_44aph")
 fill_from = Vector2(0, 0.0042735)
 
 [sub_resource type="Animation" id="Animation_pbvmj"]
@@ -170,7 +170,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_yescc"]
 resource_name = "hurt"
-length = 0.5
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -178,7 +178,7 @@ tracks/0/path = NodePath("Hurt:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
+"times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.552941), Color(1, 1, 1, 0)]
@@ -189,6 +189,96 @@ _data = {
 "RESET": SubResource("Animation_pbvmj"),
 "healed": SubResource("Animation_7a07d"),
 "hurt": SubResource("Animation_yescc")
+}
+
+[sub_resource type="Gradient" id="Gradient_tt33p"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ok75g"]
+gradient = SubResource("Gradient_tt33p")
+
+[sub_resource type="Animation" id="Animation_g4psi"]
+resource_name = "game_over"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.584314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Time:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hgwl4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.584314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Time:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qay5y"]
+_data = {
+"RESET": SubResource("Animation_hgwl4"),
+"game_over": SubResource("Animation_g4psi")
 }
 
 [node name="Player" type="CharacterBody3D"]
@@ -408,3 +498,57 @@ libraries = {
 [node name="HealthPickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_ssbou")
 volume_db = -15.0
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="Sprite2D" parent="GameOver"]
+modulate = Color(1, 1, 1, 0.584314)
+position = Vector2(570.5, 269)
+scale = Vector2(100, 60.123)
+texture = SubResource("GradientTexture2D_ok75g")
+
+[node name="Label" type="Label" parent="GameOver"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -92.0
+offset_right = 168.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("10_c5qx0")
+theme_override_font_sizes/font_size = 35
+text = "Time survived:"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Time" type="Label" parent="GameOver"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -13.0
+offset_right = 20.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_c5qx0")
+theme_override_font_sizes/font_size = 100
+text = "00:00"
+
+[node name="GameOverAnim" type="AnimationPlayer" parent="GameOver"]
+libraries = {
+"": SubResource("AnimationLibrary_qay5y")
+}

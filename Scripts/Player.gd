@@ -54,7 +54,13 @@ func _physics_process(delta):
 	else:
 		ammo_amount.text = str(ammo_list[current_weapon])
 	if hp <= 0:
-		get_tree().reload_current_scene()
+		var anim = $GameOver/GameOverAnim
+		$GameOver.visible = true
+		anim.play("game_over")
+		$GameOver/Time.text = $Timer/Time.text
+		$Effects.visible = false
+		await get_tree().create_timer(anim.current_animation_length).timeout
+		get_tree().paused = true
 	# update hp
 	$HPCanvas/HP/TextureProgressBar.value = hp
 	var move_vec = Vector3()

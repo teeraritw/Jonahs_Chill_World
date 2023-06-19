@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://ccsunw5risuh6"]
+
+[ext_resource type="Script" path="res://Menu.gd" id="1_br2y3"]
+[ext_resource type="Texture2D" uid="uid://8dxliutspcqh" path="res://Assets/UI/menu.png" id="2_u3hfe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tinte"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3lgeu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eyme5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a8q54"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_px4k0"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.329412, 0.329412, 0.329412, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.160784)
+shadow_offset = Vector2(0, 8)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_axw7e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nsu11"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgfu3"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_br2y3")
+
+[node name="Menu" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_u3hfe")
+
+[node name="Play" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 63.0
+offset_top = 281.0
+offset_right = 396.0
+offset_bottom = 396.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tinte")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3lgeu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eyme5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a8q54")
+alignment = 0
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1567.0
+offset_top = 918.0
+offset_right = 1913.0
+offset_bottom = 1066.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_px4k0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_axw7e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nsu11")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qgfu3")
+alignment = 0
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

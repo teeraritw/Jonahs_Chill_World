@@ -19,6 +19,7 @@ const WEAPON_LIST = ["Fist","Pistol","Shotgun"]
 var current_weapon = WEAPON_LIST[0]
 var dmg = 0
 
+var current_time = 0
 const MAX_HP = 100
 
 func _ready():
@@ -30,9 +31,9 @@ func _input(event):
 		rotation_degrees.y -= MOUSE_SENS * event.relative.x
 
 func _process(delta):
-	var current_time = Time.get_ticks_msec()/1000
-	var current_min = current_time/60
-	var current_sec = current_time%60
+	current_time += delta
+	var current_min = int(floor(current_time))/60
+	var current_sec = int(floor(current_time))%60
 	if current_sec < 10:
 		$Timer/Time.text = str(current_min) + ":0" + str(current_sec)
 	else:
@@ -59,6 +60,7 @@ func _physics_process(delta):
 		anim.play("game_over")
 		$GameOver/Time.text = $Timer/Time.text
 		$Effects.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		await get_tree().create_timer(anim.current_animation_length).timeout
 		get_tree().paused = true
 	# update hp
@@ -119,3 +121,10 @@ func _physics_process(delta):
 		var coll = raycast.get_collider()
 		if raycast.is_colliding() and coll.has_method("damage"):
 			coll.damage(dmg, true,false)
+
+
+func _on_button_pressed():
+	for n in get_tree().get_nodes_in_group("instanced")[0].get_children():
+		n.queue_free()
+	get_tree().reload_current_scene()
+	get_tree().paused = false

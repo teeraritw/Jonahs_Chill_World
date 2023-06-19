@@ -33,6 +33,7 @@ fog_light_energy = 0.1
 fog_density = 0.07
 
 [node name="Game" type="Node3D"]
+process_mode = 1
 
 [node name="Area3D" parent="." instance=ExtResource("1_emuig")]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
@@ -91,3 +92,5 @@ stream = ExtResource("4_jjv3f")
 volume_db = -25.0
 pitch_scale = 0.6
 autoplay = true
+
+[node name="Instanced" type="Node" parent="." groups=["instanced"]]

@@ -33,7 +33,7 @@ func _physics_process(delta):
 	vec_to_player.y = 0
 	vec_to_player = vec_to_player.normalized()
 	$Blood/BloodSplatter.position = vec_to_player + Vector3(0.3,0,0.3)
-	raycast.target_position = vec_to_player * 2.5
+	raycast.target_position = vec_to_player * 2
 	
 	move_and_collide(vec_to_player*move_speed*delta)
 	if raycast.is_colliding():

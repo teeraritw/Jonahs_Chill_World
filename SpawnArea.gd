@@ -55,4 +55,4 @@ func _on_timer_timeout():
 		var pos = spawn_positions[n]
 		var monster = spawn_types[n].instantiate()
 		monster.position = pos
-		get_tree().get_root().add_child(monster)
+		get_tree().get_nodes_in_group("instanced")[0].add_child(monster)

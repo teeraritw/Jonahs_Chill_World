@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ckwaorge4ual5"]
+[gd_scene load_steps=37 format=3 uid="uid://ckwaorge4ual5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_8jrr1"]
 [ext_resource type="Texture2D" uid="uid://bbujafuq5rghd" path="res://Assets/UI/Weapons/pistol.png" id="1_hoyhv"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://nk61n5lcpsoc" path="res://Assets/UI/red_bar.png" id="11_vc2sj"]
 [ext_resource type="AudioStream" uid="uid://cpkj13nso405n" path="res://Assets/SFX/ammo_pickup.wav" id="12_fnq1p"]
 [ext_resource type="AudioStream" uid="uid://butx7n8077b7d" path="res://Assets/SFX/gulping.wav" id="13_ssbou"]
+[ext_resource type="AudioStream" uid="uid://q3uttg01m28c" path="res://Assets/SFX/weapon_switch.wav" id="14_7tekx"]
+[ext_resource type="AudioStream" uid="uid://ctk5ohu2wshnu" path="res://Assets/SFX/hurt.wav" id="15_mst2k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q5wip"]
 
@@ -616,5 +618,14 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_gi2mg")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_h1kkl")
 text = "RETRY"
+
+[node name="WeaponSwitch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_7tekx")
+volume_db = -25.0
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_mst2k")
+volume_db = -20.0
+pitch_scale = 0.8
 
 [connection signal="pressed" from="GameOver/Button" to="." method="_on_button_pressed"]

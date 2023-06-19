@@ -55,6 +55,7 @@ func _physics_process(delta):
 	else:
 		ammo_amount.text = str(ammo_list[current_weapon])
 	if hp <= 0:
+		$Hurt.stream = null
 		var anim = $GameOver/GameOverAnim
 		$GameOver.visible = true
 		anim.play("game_over")
@@ -89,10 +90,14 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("pistol") and current_weapon != WEAPON_LIST[1]:
 		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
 		current_weapon = WEAPON_LIST[1]
+		$WeaponSwitch.play()
+		$WeaponSwitch.pitch_scale = 1.3
 		$CanvasLayer/Control/Pistol.visible = true
 	elif Input.is_action_just_pressed("shotgun") and current_weapon != WEAPON_LIST[2]:
 		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
 		current_weapon = WEAPON_LIST[2]
+		$WeaponSwitch.play()
+		$WeaponSwitch.pitch_scale = 0.6
 		$CanvasLayer/Control/Shotgun.visible = true
 		
 	################

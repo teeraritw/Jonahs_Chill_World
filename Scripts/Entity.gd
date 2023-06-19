@@ -31,6 +31,8 @@ func damage(dmg, blood_splatter: bool, is_player=true):
 		if hp_cooldown.time_left == 0.0:
 			self.hp -= dmg
 			self.get_node("Effects/EffectAnim").play("hurt")
+			if !self.get_node("Hurt").is_playing():
+				self.get_node("Hurt").play()
 			hp_cooldown.start()
 	else:
 		self.hp -= dmg

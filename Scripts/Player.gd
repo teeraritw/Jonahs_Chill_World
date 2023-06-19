@@ -97,7 +97,7 @@ func _physics_process(delta):
 		get_node("./CanvasLayer/Control/"+current_weapon).visible = false
 		current_weapon = WEAPON_LIST[2]
 		$WeaponSwitch.play()
-		$WeaponSwitch.pitch_scale = 0.6
+		$WeaponSwitch.pitch_scale = 0.5
 		$CanvasLayer/Control/Shotgun.visible = true
 		
 	################
